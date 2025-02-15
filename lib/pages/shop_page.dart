@@ -9,6 +9,15 @@ class ShopePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void addToCart(Coffee coffee) {
+      Provider.of<CoffeeShop>(context, listen: false).addItemToCart(coffee);
+
+      showDialog(
+          context: context,
+          builder: (context) =>
+              AlertDialog(title: Text("Successfully added to cart!")));
+    }
+
     return Consumer<CoffeeShop>(
         builder: (context, value, child) => SafeArea(
                 child: Padding(
@@ -23,8 +32,11 @@ class ShopePage extends StatelessWidget {
                           itemCount: value.coffeeShop.length,
                           itemBuilder: (context, index) {
                             Coffee coffee = value.coffeeShop[index];
-                            return CoffeeTile(coffee: coffee);
-                          }))
+                            return CoffeeTile(
+                                coffee: coffee,
+                                onPressed: () => addToCart(coffee),
+                                icon: Icon(Icons.add));
+                          })),
                 ],
               ),
             )));
