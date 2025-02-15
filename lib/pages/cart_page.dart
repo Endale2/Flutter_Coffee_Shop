@@ -14,6 +14,7 @@ class CartPage extends StatelessWidget {
           .removeItemFromCart(coffee);
     }
 
+    void payNow() {}
     return Consumer<CoffeeShop>(
         builder: (context, value, child) => SafeArea(
                 child: Padding(
@@ -32,15 +33,18 @@ class CartPage extends StatelessWidget {
                                 onPressed: () => removeFromCart(coffee),
                                 icon: Icon(Icons.delete));
                           })),
-                  Container(
-                    padding: EdgeInsets.all(25),
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                        color: Colors.brown,
-                        borderRadius: BorderRadius.circular(12)),
-                    child: Center(
-                        child: Text("Pay Now",
-                            style: TextStyle(color: Colors.white))),
+                  GestureDetector(
+                    onTap: payNow,
+                    child: Container(
+                      padding: EdgeInsets.all(25),
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                          color: Colors.brown,
+                          borderRadius: BorderRadius.circular(12)),
+                      child: Center(
+                          child: Text("Pay Now",
+                              style: TextStyle(color: Colors.white))),
+                    ),
                   )
                 ],
               ),
