@@ -1,6 +1,7 @@
 import 'package:coffee_app/entities/coffee.dart';
+import 'package:flutter/material.dart';
 
-class CoffeeShop {
+class CoffeeShop extends ChangeNotifier {
   final List<Coffee> _shop = [
     Coffee(name: "Black", imagePath: "assets/black.png", price: "20"),
     Coffee(name: "Latte", imagePath: "assets/latte.png", price: "30"),
@@ -17,9 +18,11 @@ class CoffeeShop {
 
   void addItemToCart(Coffee coffee) {
     userCart.add(coffee);
+    notifyListeners();
   }
 
   void removeItemFromCart(Coffee coffee) {
     userCart.remove(coffee);
+    notifyListeners();
   }
 }
